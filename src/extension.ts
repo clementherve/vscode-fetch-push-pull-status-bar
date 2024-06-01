@@ -9,7 +9,6 @@ export async function activate(context: ExtensionContext) {
   }
 
   if (!vscodeGitExtension?.isActive) {
-    window.showErrorMessage('Vscode git extension not active');
     await vscodeGitExtension?.activate();
     return;
   }
@@ -28,10 +27,11 @@ export async function activate(context: ExtensionContext) {
   const repositories = gitModel.repositories;
 
   if (repositories.length === 0) {
-    window.showErrorMessage('No repositories detected');
     return;
   } else if (repositories.length > 1) {
-    window.showInformationMessage('Multiple repositories detected');
+    window.showInformationMessage('Multiple repositories detected. Currently, it is not supported by the extension.');
+    // todo: handle multi-repository
+    return;
   }
 
   const repository = gitModel.repositories[0];
@@ -57,10 +57,16 @@ export async function activate(context: ExtensionContext) {
       case 'Pull':
       case 'Commit':
         const head = repository.HEAD;
-        pullItem.text = `${head.behind}$(arrow-down)`;
-        pushItem.text = `${head.ahead}$(arrow-up)`;
-        pushItem.show();
-        pullItem.show();
+
+        if (head.behind !== undefined) {
+          pullItem.text = `${head.behind}$(arrow-down)`;
+          pullItem.show();
+        }
+
+        if (head.ahead !== undefined) {
+          pushItem.text = `${head.ahead}$(arrow-up)`;
+          pushItem.show();
+        }
         break;
     }
   });

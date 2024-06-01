@@ -10,7 +10,7 @@
   },
   "icon": "./assets/icon.png",
   "description": "Adds fetch, push and pull buttons to the status bar.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "engines": {
     "vscode": "^1.89.0"
   },
