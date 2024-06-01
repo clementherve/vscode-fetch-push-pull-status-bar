@@ -1,5 +1,5 @@
 {
-  "name": "@clementherve/status-bar-fetch-pull-push",
+  "name": "status-bar-fetch-pull-push",
   "displayName": "Status bar fetch/pull/push",
   "author": {
     "name": "Clément HERVE"
