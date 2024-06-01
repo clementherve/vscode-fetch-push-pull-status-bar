@@ -11,8 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm install -g @vscode/vsce
       - uses: actions/setup-node@v3
+      - run: npm i
+      - run: npm install -g @vscode/vsce
       - run: vsce publish
         env:
           VSCE_PAT: ${{secrets.VSCE_PAT}}
