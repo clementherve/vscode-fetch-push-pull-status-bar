@@ -10,15 +10,14 @@ export async function activate(context: ExtensionContext) {
 
   if (!vscodeGitExtension?.isActive) {
     await vscodeGitExtension?.activate();
-    return;
   }
 
+  await vscodeGitExtension?.exports?.model?.isInitialized;
   const gitModel = vscodeGitExtension?.exports?.model;
 
   if (!gitModel) {
     return;
   }
-  await vscodeGitExtension?.exports?.model.isInitialized;
 
   const fetchItem = window.createStatusBarItem(StatusBarAlignment.Left, 101);
   const pullItem = window.createStatusBarItem(StatusBarAlignment.Left, 100);
