@@ -6,7 +6,7 @@
     "name": "Clément HERVE"
   },
   "repository": {
-    "url": ""
+    "url": "https://github.com/clementherve/vscode-fetch-push-pull-status-bar"
   },
   "icon": "./assets/icon.png",
   "description": "Adds fetch, push and pull buttons to the status bar.",
