@@ -4,7 +4,7 @@ export async function activate(context: ExtensionContext) {
   const vscodeGitExtension = extensions.getExtension('vscode.git');
 
   if (!vscodeGitExtension) {
-    window.showErrorMessage('VsCode git extension not detected.');
+    window.showErrorMessage('vscode git extension not detected.');
     return;
   }
 
@@ -56,25 +56,27 @@ export async function activate(context: ExtensionContext) {
         const head = repository.HEAD;
         pullItem.text = `${head.behind}$(arrow-down)`;
         pushItem.text = `${head.ahead}$(arrow-up)`;
+        pushItem.show();
+        pullItem.show();
         break;
     }
   });
 
-  fetchItem.text = `$(sync)`;
   fetchItem.command = 'git.fetchAll';
+  fetchItem.text = `$(sync)`;
   fetchItem.tooltip = 'Fetch';
   context.subscriptions.push(fetchItem);
   fetchItem.show();
 
   pullItem.command = 'git.pullRebase';
+  pullItem.text = `$(arrow-down)`;
   pullItem.tooltip = 'Pull (rebase)';
   context.subscriptions.push(pullItem);
-  pullItem.show();
 
   pushItem.command = 'git.push';
+  pushItem.text = `$(arrow-up)`;
   pushItem.tooltip = 'Push';
   context.subscriptions.push(pushItem);
-  pushItem.show();
 }
 
 export function deactivate() {}

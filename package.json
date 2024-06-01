@@ -1,14 +1,16 @@
 {
   "name": "status-bar-fetch-pull-push",
   "displayName": "Status bar fetch/pull/push",
+  "publisher": "clementherve",
   "author": {
     "name": "Clément HERVE"
   },
   "repository": {
     "url": ""
   },
+  "icon": "./assets/icon.png",
   "description": "Adds fetch, push and pull buttons to the status bar.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.89.0"
   },
@@ -17,7 +19,8 @@
     "SCM Providers"
   ],
   "activationEvents": [
-    "onFileSystem:git"
+    "onFileSystem:git",
+    "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "scripts": {
