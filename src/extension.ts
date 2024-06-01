@@ -4,11 +4,12 @@ export async function activate(context: ExtensionContext) {
   const vscodeGitExtension = extensions.getExtension('vscode.git');
 
   if (!vscodeGitExtension) {
-    window.showErrorMessage('vscode git extension not detected.');
+    window.showErrorMessage('Vscode git extension not detected');
     return;
   }
 
   if (!vscodeGitExtension?.isActive) {
+    window.showErrorMessage('Vscode git extension not active');
     await vscodeGitExtension?.activate();
     return;
   }
@@ -18,6 +19,7 @@ export async function activate(context: ExtensionContext) {
   if (!gitModel) {
     return;
   }
+  await vscodeGitExtension?.exports?.model.isInitialized;
 
   const fetchItem = window.createStatusBarItem(StatusBarAlignment.Left, 101);
   const pullItem = window.createStatusBarItem(StatusBarAlignment.Left, 100);
@@ -26,6 +28,7 @@ export async function activate(context: ExtensionContext) {
   const repositories = gitModel.repositories;
 
   if (repositories.length === 0) {
+    window.showErrorMessage('No repositories detected');
     return;
   } else if (repositories.length > 1) {
     window.showInformationMessage('Multiple repositories detected');
